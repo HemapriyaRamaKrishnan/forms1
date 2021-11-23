@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-6 mx-auto my-5">
+        <div class="row d-flex justify-content-center">
+
+            <button type="button" class="btn btn-primary w-25" (click)="addEmp()" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                Add Employees
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form [formGroup]="formInput">
+                            <div class="mb-3 p-2">
+                                <label class="form-label">Firstname</label>
+                                <input type="text" class="form-control" formControlName="firstName">
+                            </div>
+                            <div class="mb-3 p-2">
+                                <label class="form-label">Lastname</label>
+                                <input type="text" class="form-control" formControlName="lastName">
+                            </div>
+                            <div class="mb-3 p-2">
+                                <label class="form-label">email</label>
+                                <input type="text" class="form-control" formControlName="emailId">
+                            </div>
+                            <div class="mb-3 p-2">
+                                <label class="form-label">Mobile no</label>
+                                <input type="text" class="form-control" formControlName="mobileNo">
+                            </div>
+                            <div class="mb-3 p-2">
+                                <label class="form-label">Salary</label>
+                                <input type="text" class="form-control" formControlName="salary">
+                            </div>
+                        </form>
+                        <span class="p-2">
+                            <button type="button" (click)="onSubmit()" *ngIf="isAdd"
+                                class="btn btn-primary">Add</button>
+                            <button type="button" *ngIf="isUpdate" (click)="updateEmployee()" class="btn btn-primary">Update</button>
+                        </span>
+
+                        <span class="mx-2">
+                            <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col"> Firstname</th>
+                        <th scope="col">Lastname</th>
+                        <th scope="col">Email id</th>
+                        <th scope="col">Mobile no</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of employeeData;let i=index">
+                        <td>{{c.id}}</td>
+                        <td>{{c.firstName}}</td>
+                        <td>{{c.lastName}}</td>
+                        <td>{{c.emailId}}</td>
+                        <td>{{c.mobileNo}}</td>
+                        <td>{{c.salary}}</td>
+                        <td>
+                            <span>
+                                <button type="button" (click)="onEdit(c)" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+
+                            </span>
+
+                            <span class="ps-2">
+                                <button type="button" (click)="deleteEmployee(c)" class="btn btn-danger">Delete</button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
